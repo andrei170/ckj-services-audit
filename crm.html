@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Quote Tracker Concept &middot; CKJ Services &middot; AG1 Consulting</title>
+<style>
+:root{--ink:#16202b;--mut:#64748b;--line:#e2e8f0;--bg:#f6f8fb;--card:#fff;
+  --brand:#0f3d66;--brand2:#1d6fb8;--amber:#d97706;--red:#dc2626;--green:#15803d;--violet:#6d28d9;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:15px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.note{background:#fff8ed;border:1px solid #f0cba6;border-radius:12px;padding:16px 18px;
+  font-size:13.5px;color:#6b4a2c;margin:20px auto;max-width:1240px}
+.note b{color:#48301d}
+.appbar{background:var(--brand);color:#fff;padding:0}
+.appbar .inner{display:flex;align-items:center;gap:22px;padding:13px 20px;max-width:1240px;margin:0 auto;flex-wrap:wrap}
+.appbar .logo{font-weight:800;font-size:16px;letter-spacing:-.01em}
+.appbar nav{display:flex;gap:18px;font-size:14px;color:#bcd6ec;flex-wrap:wrap}
+.appbar nav span.on{color:#fff;font-weight:700;border-bottom:2px solid #fff;padding-bottom:3px}
+.appbar .who{margin-left:auto;font-size:13px;color:#bcd6ec}
+.strip{background:#fff;border-bottom:1px solid var(--line);padding:16px 0}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:2px 0}
+.stat .lab{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);font-weight:700}
+.stat .val{font-size:23px;font-weight:800;margin-top:3px;letter-spacing:-.02em}
+.stat .sub{font-size:12px;color:var(--mut)}
+.stat.alert .val{color:var(--red)}
+h2.sec{font-size:17px;font-weight:800;margin:26px 0 4px}
+p.secsub{color:var(--mut);font-size:14px;margin-bottom:16px;max-width:80ch}
+.board{display:grid;grid-template-columns:repeat(6,minmax(188px,1fr));gap:12px;overflow-x:auto;padding-bottom:8px}
+@media(max-width:1080px){.board{grid-template-columns:repeat(3,minmax(188px,1fr))}}
+@media(max-width:700px){.board{grid-template-columns:repeat(2,minmax(170px,1fr))}}
+.col{background:#eef2f7;border-radius:10px;padding:10px;min-width:0}
+.colhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px;padding:0 2px}
+.colhead .nm{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+.colhead .ct{font-size:12px;font-weight:700;color:var(--mut);background:#fff;border-radius:99px;padding:1px 8px}
+.cardq{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:11px;margin-bottom:9px;
+  box-shadow:0 1px 2px rgba(16,32,48,.05)}
+.cardq .co{font-weight:800;font-size:13.5px;line-height:1.3}
+.cardq .pr{font-size:12.5px;color:var(--mut);margin-top:2px}
+.cardq .vl{font-weight:800;font-size:14.5px;margin-top:7px;color:var(--brand)}
+.cardq .mt{font-size:11.5px;color:var(--mut);margin-top:5px;display:flex;justify-content:space-between;gap:8px}
+.pill{display:inline-block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+  padding:2px 7px;border-radius:99px;margin-top:7px}
+.p-dc{background:#ede9fe;color:var(--violet)}
+.p-wh{background:#dbeafe;color:#1d4ed8}
+.p-fd{background:#dcfce7;color:var(--green)}
+.p-ds{background:#fef3c7;color:var(--amber)}
+.flag{border-left:3px solid var(--red)}
+.flagtxt{font-size:11.5px;color:var(--red);font-weight:700;margin-top:6px}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:6px}
+@media(max-width:940px){.two{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.panel .ph{padding:13px 16px;border-bottom:1px solid var(--line);font-weight:800;font-size:14px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px}
+.panel .ph .tag{font-size:11px;font-weight:700;color:#fff;background:var(--amber);border-radius:99px;padding:2px 9px}
+.panel .pb{padding:15px 16px}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:7px 12px;font-size:13.5px}
+.kv dt{color:var(--mut);font-weight:600}
+.kv dd{font-weight:600}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th{text-align:left;padding:9px 16px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mut);border-bottom:1px solid var(--line);font-weight:800;background:#f8fafc}
+.tbl td{padding:9px 16px;border-bottom:1px solid var(--line)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .w{color:var(--green);font-weight:800}
+.tbl .l{color:var(--mut);font-weight:700}
+.tbl .o{color:var(--amber);font-weight:800}
+.tot{background:#f8fafc;font-weight:800}
+.tl{list-style:none;font-size:13.5px}
+.tl li{padding:9px 0 9px 20px;border-left:2px solid var(--line);position:relative;margin-left:5px}
+.tl li:before{content:"";position:absolute;left:-5px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--brand2)}
+.tl li.red:before{background:var(--red)}
+.tl .wn{font-size:11.5px;color:var(--mut);display:block}
+.alertbox{background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#7f1d1d}
+.alertbox b{color:#991b1b}
+footer{color:var(--mut);font-size:12.5px;padding:26px 0 44px;line-height:1.7}
+section{padding:4px 0 26px}
+</style></head><body>
+
+<div class="note">
+  <b>Concept only &mdash; prepared by AG1 Consulting for discussion with Kris Perry.</b> This is a mock-up of what a
+  quote tracking system for CKJ could look like. <b>Every company name, project, value, date and figure on this page is
+  invented to demonstrate layout. None of it is CKJ data, and the contractors named do not exist.</b> The real version
+  would be built around CKJ's own stage names, fields and figures.
+</div>
+
+<div class="appbar"><div class="inner">
+  <div class="logo">CKJ Scaffolding &mdash; Quote Tracker</div>
+  <nav><span class="on">Pipeline</span><span>Contractors</span><span>Projects</span><span>Calendar</span><span>Reports</span></nav>
+  <div class="who">Kris Perry</div>
+</div></div>
+
+<div class="strip"><div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="lab">Live quotes</div><div class="val">23</div><div class="sub">out, awaiting decision</div></div>
+    <div class="stat"><div class="lab">Value out</div><div class="val">&pound;1.84m</div><div class="sub">across 23 quotes</div></div>
+    <div class="stat alert"><div class="lab">Gone quiet</div><div class="val">6</div><div class="sub">no contact 30 days+</div></div>
+    <div class="stat"><div class="lab">Won this quarter</div><div class="val">&pound;612k</div><div class="sub">9 projects</div></div>
+    <div class="stat"><div class="lab">Win rate</div><div class="val">31%</div><div class="sub">last 12 months</div></div>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<section>
+  <h2 class="sec">Every quote you have out, and what stage it is at</h2>
+  <p class="secsub">Stage names here are a starting point. On the call we would change them to whatever you actually
+  say on site &mdash; if it is "pricing" rather than "estimating", it says pricing.</p>
+
+  <div class="board">
+    <div class="col">
+      <div class="colhead"><span class="nm">Enquiry</span><span class="ct">4</span></div>
+      <div class="cardq"><div class="co">Northgate Construction</div><div class="pr">Unit 4 extension, Thurrock</div>
+        <div class="vl">&mdash;</div><span class="pill p-wh">Warehouse</span>
+        <div class="mt"><span>ITT received</span><span>2 days</span></div></div>
+      <div class="cardq"><div class="co">Haleworth Build Group</div><div class="pr">Cold store, Peterborough</div>
+        <div class="vl">&mdash;</div><span class="pill p-fd">Food dist.</span>
+        <div class="mt"><span>ITT received</span><span>5 days</span></div></div>
+    </div>
+
+    <div class="col">
+      <div class="colhead"><span class="nm">Site visit</span><span class="ct">3</span></div>
+      <div class="cardq"><div class="co">Marrowfield Ltd</div><div class="pr">DC2 fit-out, Milton Keynes</div>
+        <div class="vl">est. &pound;88,000</div><span class="pill p-dc">Data centre</span>
+        <div class="mt"><span>Visit booked</span><span>Tue 7th</span></div></div>
+      <div class="cardq"><div class="co">Brampton &amp; Vale</div><div class="pr">Retail park, Colchester</div>
+        <div class="vl">est. &pound;34,000</div><span class="pill p-ds">Distribution</span>
+        <div class="mt"><span>Visited</span><span>yesterday</span></div></div>
+    </div>
+
+    <div class="col">
+      <div class="colhead"><span class="nm">Estimating</span><span class="ct">5</span></div>
+      <div class="cardq"><div class="co">Northgate Construction</div><div class="pr">Phase 3 birdcage, Harlow</div>
+        <div class="vl">&pound;146,000</div><span class="pill p-wh">Warehouse</span>
+        <div class="mt"><span>Due Mon</span><span>Kris</span></div></div>
+      <div class="cardq"><div class="co">Steddon Projects</div><div class="pr">Temporary roof, Ipswich</div>
+        <div class="vl">&pound;61,500</div><span class="pill p-ds">Distribution</span>
+        <div class="mt"><span>Due Wed</span><span>Kris</span></div></div>
+    </div>
+
+    <div class="col">
+      <div class="colhead"><span class="nm">Quote out</span><span class="ct">8</span></div>
+      <div class="cardq"><div class="co">Marrowfield Ltd</div><div class="pr">DC1 external access, Slough</div>
+        <div class="vl">&pound;312,000</div><span class="pill p-dc">Data centre</span>
+        <div class="mt"><span>Sent 12 days</span><span>decision Nov</span></div></div>
+      <div class="cardq"><div class="co">Haleworth Build Group</div><div class="pr">Chilled unit, Wisbech</div>
+        <div class="vl">&pound;97,400</div><span class="pill p-fd">Food dist.</span>
+        <div class="mt"><span>Sent 20 days</span><span>&mdash;</span></div></div>
+    </div>
+
+    <div class="col">
+      <div class="colhead"><span class="nm">Chasing</span><span class="ct">6</span></div>
+      <div class="cardq flag"><div class="co">Brampton &amp; Vale</div><div class="pr">Loading bay, Basildon</div>
+        <div class="vl">&pound;54,800</div><span class="pill p-ds">Distribution</span>
+        <div class="flagtxt">No contact 41 days</div></div>
+      <div class="cardq flag"><div class="co">Steddon Projects</div><div class="pr">Crash deck, Chelmsford</div>
+        <div class="vl">&pound;29,200</div><span class="pill p-wh">Warehouse</span>
+        <div class="flagtxt">No contact 36 days</div></div>
+    </div>
+
+    <div class="col">
+      <div class="colhead"><span class="nm">Won</span><span class="ct">9</span></div>
+      <div class="cardq"><div class="co">Northgate Construction</div><div class="pr">Unit 11 containment, Rayleigh</div>
+        <div class="vl">&pound;118,000</div><span class="pill p-wh">Warehouse</span>
+        <div class="mt"><span>Starts 20 Oct</span><span>12 wks</span></div></div>
+      <div class="cardq"><div class="co">Marrowfield Ltd</div><div class="pr">Plant deck, Reading</div>
+        <div class="vl">&pound;76,300</div><span class="pill p-dc">Data centre</span>
+        <div class="mt"><span>On site</span><span>wk 3 of 8</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="two">
+    <div class="panel">
+      <div class="ph">One quote record <span class="tag">41 days quiet</span></div>
+      <div class="pb">
+        <dl class="kv">
+          <dt>Main contractor</dt><dd>Brampton &amp; Vale</dd>
+          <dt>Contact</dt><dd>Contracts Manager</dd>
+          <dt>Project</dt><dd>Loading bay, Basildon</dd>
+          <dt>Sector</dt><dd>Distribution centre</dd>
+          <dt>Scaffold type</dt><dd>Loading tower &amp; crash deck</dd>
+          <dt>Value</dt><dd>&pound;54,800</dd>
+          <dt>Programme</dt><dd>6 weeks, from 3 Nov</dd>
+          <dt>Quote sent</dt><dd>22 August 2026</dd>
+          <dt>Decision expected</dt><dd>Mid September</dd>
+          <dt>Estimated by</dt><dd>Kris</dd>
+          <dt>Status</dt><dd style="color:var(--red)">Overdue &mdash; no reply</dd>
+        </dl>
+        <div class="alertbox" style="margin-top:14px">
+          <b>This is the whole point of the system.</b> A quote worth &pound;54,800 has sat for 41 days with nobody
+          chasing it. Without something watching, it is only remembered if you happen to think of it.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="ph">Everything you have ever quoted one contractor</div>
+      <table class="tbl">
+        <tr><th>Project</th><th>Value</th><th>Result</th></tr>
+        <tr><td>Unit 11 containment, Rayleigh</td><td>&pound;118,000</td><td class="w">Won</td></tr>
+        <tr><td>Phase 3 birdcage, Harlow</td><td>&pound;146,000</td><td class="o">Out</td></tr>
+        <tr><td>Unit 4 extension, Thurrock</td><td>&mdash;</td><td class="o">Enquiry</td></tr>
+        <tr><td>Yard access, Braintree</td><td>&pound;41,500</td><td class="w">Won</td></tr>
+        <tr><td>Roof edge protection, Witham</td><td>&pound;22,900</td><td class="l">Lost</td></tr>
+        <tr><td>Gable access, Southend</td><td>&pound;18,400</td><td class="w">Won</td></tr>
+        <tr class="tot"><td>6 quotes &middot; 3 won</td><td>&pound;347,800</td><td>50%</td></tr>
+      </table>
+      <div class="pb" style="border-top:1px solid var(--line)">
+        <div style="font-size:13.5px;color:var(--mut)">
+          <b style="color:var(--ink)">This is the view that compounds.</b> Every contractor you have ever worked for,
+          every project, every result &mdash; so when one rings, you already know what you have quoted them, what you
+          won, and what you charged.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="two">
+    <div class="panel">
+      <div class="ph">What happens on its own</div>
+      <div class="pb">
+        <ul class="tl">
+          <li>Quote marked sent<span class="wn">22 Aug &middot; &pound;54,800 &middot; Brampton &amp; Vale</span></li>
+          <li>Reminder: follow up in 14 days<span class="wn">5 Sep &middot; task created for Kris</span></li>
+          <li class="red">Flagged as gone quiet<span class="wn">21 Sep &middot; 30 days, no reply</span></li>
+          <li class="red">Second flag &mdash; still no contact<span class="wn">2 Oct &middot; 41 days</span></li>
+        </ul>
+        <div style="font-size:13.5px;color:var(--mut);margin-top:12px">
+          Timings are a starting point. Tenders on the larger schemes run far longer than a roofing quote, so
+          <b style="color:var(--ink)">30, 60 and 90 days</b> is probably closer than 7 or 14 &mdash; and it can differ
+          by value, so the small ones get chased sooner and the big ones are left alone.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="ph">Where the enquiries come from</div>
+      <div class="pb">
+        <div style="font-size:13.5px;color:var(--mut);margin-bottom:12px">
+          CKJ's site carries no enquiry form &mdash; everything arrives by phone or to
+          <b style="color:var(--ink)">kris@</b>. So the system is built around that rather than around web forms.
+        </div>
+        <dl class="kv">
+          <dt>Email</dt><dd>Enquiries to kris@ land as a record automatically</dd>
+          <dt>Phone</dt><dd>Logged against the contractor, with a note</dd>
+          <dt>ITT / tender docs</dt><dd>Attached to the quote record</dd>
+          <dt>Repeat contractor</dt><dd>Matched to their existing history</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  Concept prepared by Andrei Givero &middot; AG1 Consulting &middot; 2 October 2026, for discussion with Kris Perry at
+  CKJ Services Limited. <b>This is a design mock-up, not a working system and not a report.</b>
+  <b>&#9888; Every contractor name, project, value, date, win rate and total shown is invented for the purpose of
+  demonstrating layout. None of it is CKJ data, none of the contractors named are real, and nothing here reflects
+  CKJ's actual pipeline, pricing or performance.</b>
+  The observations that CKJ's website carries no enquiry form and that enquiries route to kris@ were read from
+  ckjscaffoldingservices.co.uk's own served pages on 1 October 2026 and are reproducible; items recorded as not found
+  describe what a static read returned and are not proof of absence.
+  <b>Stage names, fields and chase timings are drafts for discussion and would be rebuilt around how CKJ actually
+  works before anything is configured.</b>
+  <b>No enquiry, quote, win rate, recovery or revenue outcome is forecast, promised or implied.</b>
+</div></footer>
+</body></html>
